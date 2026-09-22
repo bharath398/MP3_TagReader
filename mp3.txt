@@ -1,0 +1,41 @@
+mp3 ->audio
+build an application->read the song details.
+view the contents->title,album,year,genre,artist,comment.
+we are going to display main details
+1.view->just display
+2.edit->edit song name, year
+
+first 3 bytes we have signature id3 tag , which indicates its mp3 file.next 2 bytes is for version
+id3 tag->metadata container->it contains data about data.
+we have 2 id3 versions->id3v1,id3v2
+in the versions id3v1.0 and id3v1.1 the size are fixed
+id3v2 we have 3 different versions.
+id3v2.2
+id3v2.3-implement project using this version
+id3v2.4
+
+we have flag of 1 byte , is used for future purpose.
+
+id3v2.3-03 00
+talb-album,movies->title
+flag is 3 bytes
+take an array and store all the tags.read 4 bytes from file , compare with tit2 if match , display.
+next 4 bytes will have size , read the 4 bytes , but it will store in big endian format , so we need to make
+it little then we will get the size, next 3 bytes is flag, just skip the flag.use fseek and skip the position , after 
+skipping 3 bytes , read 57 bytes since it will have title
+
+view()
+1.skip 10 bytes header (use fseek)
+2.read 4 bytes from mp3 file and compare which tag it is , by storing the flags in a array
+3.read 4 bytes for size of title, declare any array for storing the title using size
+4.skip 3 bytes flag.
+5.next we have will have title, read the size no of bytes from file and store in the declared array and
+print the array
+6.read 4 bytes for flag , repeat same procedure.
+
+edit()
+genre -m not -g
+not possible to edit in original file  ,so edit in copy file.
+read the bytes from comment lines and then paste to the file.
+one function copy(),
+other is tagset()
